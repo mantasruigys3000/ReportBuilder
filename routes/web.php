@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Landing;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->group( function () {
+    Route::get('/landing', Landing::class)->name('landing');
+});
+
