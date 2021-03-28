@@ -11,7 +11,18 @@ class Quote extends Model
 
     protected $table = 'quotes';
 
+    protected $dates = [
+        'created_at'
+    ];
+
+    protected $dateFormat = 'd/m/Y H:i';
+
+
+
+
     public function client_1 () {
         return $this->belongsTo(Client::class,'client_one','id',);
     }
+
+
 }
