@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\DashboardPage;
 use App\Http\Livewire\Landing;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group( function () {
     Route::get('/landing', Landing::class)->name('landing');
+    Route::get('/dashboard', DashboardPage::class)->name('dashboard');
+
 });
 

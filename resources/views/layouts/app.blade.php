@@ -26,7 +26,6 @@
 
         <div class="min-h-screen bg-gray-100">
 
-
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -35,9 +34,11 @@
                     </div>
                 </header>
             @endif
+            <livewire:sidebar-navbar ></livewire:sidebar-navbar>
+
 
             <!-- Page Content -->
-            <main>
+            <main class="pl-48">
                 {{ $slot }}
             </main>
         </div>
