@@ -27,11 +27,11 @@ class SmokerChart extends BaseChart
         DB::enableQueryLog();
 
         $quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
-            $query->select('id');
+            $query->where('smoker',false);
         })->get();
 
 
-        dd(DB::getQueryLog());
+        dd($quotes->count());
         //dd($quotes->count());
 
         $clients = collect();

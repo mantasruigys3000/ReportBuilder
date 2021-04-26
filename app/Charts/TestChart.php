@@ -20,9 +20,9 @@ class TestChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $quotes = Quote::select('benefit','quoted_at')->cursor();
+        $quotes = Quote::select('benefit','created_at')->cursor();
         $quotes = $quotes->groupBy(function($val){
-            $createdAtCarbon = $val->quoted_at;
+            $createdAtCarbon = $val->created_at;
             return $createdAtCarbon->year . '/' . $createdAtCarbon->month;
 
         });
