@@ -26,60 +26,25 @@ class SmokerChart extends BaseChart
         $date = Carbon::createFromFormat('d/m/Y H:i','23/09/2020 00:00');
         DB::enableQueryLog();
 
-        $quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
+        $non_smoker_quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
             $query->where('smoker',false);
-        })->get();
+        })->cursor();
+
+        $smoker_quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
+            $query->where('smoker',true);
+        })->cursor();
 
 
-        dd($quotes->count());
-        //dd($quotes->count());
+        $result = [
+            'Smokers'=> $smoker_quotes->count(),
+            'Non smokers' => $non_smoker_quotes->count()
+        ];
 
-        $clients = collect();
-
-//        $arr = [];
-//        $clients= DB::table('clients')->select('id')->orderBy('id')->chunk(100,function ($c){
-//            foreach ($c as $client){
-//                $arr[$client->id] = $client->id;
-//            }
-//
-//        });
-//        dd($arr);
-
-
-        //$clients = collect($clients );
-
-        dd($clients);
-
-//        $smoker_quotes = $quotes->with('client_1',function ($q){
-//            $q->where('smoker','=','0');
-//        })->get();
-
-
-        //$non_smoker_quotes = $quotes
-
-        dd($quotes->first());
-
-        //dd($smoker_quotes->first()->client_1);
-
-
-
-
-        //dd($quotes);
-
-        foreach ($quotes as $quote){
-            //dd($quote->client_1->smoker);
-            if($quote->client_1->smoker){
-                $smoker_quotes->add($quote);
-            }else{
-                $non_smoker_quotes->add($quote);
-            }
-        }
 
 
 
         return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Sample', [1, 2, 3])
-            ->dataset('Sample 2', [3, 2, 1]);
+            ->labels(array_keys($result))
+            ->dataset('dataset 1',array_values($result));
     }
 }
