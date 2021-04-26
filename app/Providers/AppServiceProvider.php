@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Charts\SmokerChart;
 use Illuminate\Support\ServiceProvider;
 use ConsoleTVs\Charts\Registrar as Charts;
 
@@ -28,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Charts $charts)
     {
         $charts->register([
-            \App\Charts\TestChart::class
+            \App\Charts\TestChart::class,
+            SmokerChart::class,
         ]);
     }
 }

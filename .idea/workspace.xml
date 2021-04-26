@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="525c0630-1522-4a32-b6de-742204600baf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ReportBuilder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ReportBuilder.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Charts/TestChart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Charts/TestChart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Client.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Quote.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Quote.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard-page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard-page.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +150,13 @@
       <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
       <path value="$PROJECT_DIR$/vendor/consoletvs/charts" />
       <path value="$PROJECT_DIR$/vendor/chartisan/php" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
     </include_path>
   </component>
   <component name="ProjectId" id="1q587wuKHycgg5epH7ltckxvo2N" />
@@ -181,22 +194,27 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1018" y="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617921043542">
+    <state x="1018" y="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1619286674296">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state x="1018" y="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.0.1920.1080/0.0.2560.1440/2560.0.1680.1050@0.0.2560.1440" timestamp="1619286674296" />
     <state x="1018" y="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1617921043542" />
     <state x="341" y="164" key="SettingsEditor" timestamp="1616430902116">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1616430902116" />
-    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup" timestamp="1618243585477">
+    <state x="988" y="430" width="584" height="580" key="find.popup" timestamp="1619401021142">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/-1920.0.1920.1080/0.0.2560.1440/2560.0.1680.1050@0.0.2560.1440" timestamp="1617830160897" />
+    <state x="988" y="430" width="584" height="580" key="find.popup/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1619401021142" />
+    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup" timestamp="1619437860125">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/-1920.0.1920.1080/0.0.2560.1440/2560.0.1680.1050@0.0.2560.1440" timestamp="1619286389221" />
     <state x="770" y="320" width="1021" height="928" key="search.everywhere.popup/-1920.23.1920.1057/0.0.2560.1369/2560.23.1680.1027@0.0.2560.1369" timestamp="1617827419556" />
     <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1616957211832" />
     <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/0.0.2560.1369/-1920.23.1920.1057/2560.23.1680.1027@0.0.2560.1369" timestamp="1618222368364" />
-    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1618243585477" />
+    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1619437860125" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

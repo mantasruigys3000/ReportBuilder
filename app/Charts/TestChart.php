@@ -20,23 +20,47 @@ class TestChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        //$quotes = Quote::select('benefit','created_at')->get();
-        //dd($quotes);
+        $quotes = Quote::select('benefit','quoted_at')->cursor();
+        $quotes = $quotes->groupBy(function($val){
+            $createdAtCarbon = $val->quoted_at;
+            return $createdAtCarbon->year . '/' . $createdAtCarbon->month;
 
-        $quotes = DB::select("SELECT quotes.benefit, quotes.created_at from QUOTES");
-        $quotes = collect($quotes);
-        //dd($quotes->first());
-
-        $res= $quotes->groupBy(function($val) {
-            return (Carbon::createFromFormat('d/m/Y H:i',$val->created_at)->year . '/' . Carbon::createFromFormat('d/m/Y H:i',$val->created_at)->month);
         });
 
-
-        $groups = array_keys($res->toArray());
         $avgs = [];
-        foreach ($groups as $group){
-            $avgs[$group] = round($res[$group]->avg('benefit'));
+
+        foreach ($quotes as $key => $quote){
+            $avgs[$key] = $quote->avg('benefit');
         }
+
+
+
+        //dd($quotes->first()->avg('benefit'));
+
+//        $avgs = [];
+//
+//        foreach ($quotes as $quote){
+//            $createdAtCarbon = $quote->quoted_at;
+//
+//            //dd($createdAtCarbon);
+//            $avgs[$createdAtCarbon->year . '/' . $createdAtCarbon->month] =
+//        }
+//        dd($quotes);
+
+//        $quotes = DB::select("SELECT quotes.benefit, quotes.created_at_old from QUOTES");
+//        $quotes = collect($quotes);
+        //dd($quotes->first());
+
+//        $res= $quotes->groupBy(function($val) {
+//            return (Carbon::createFromFormat('d/m/Y H:i',$val->created_at_old)->year . '/' . Carbon::createFromFormat('d/m/Y H:i',$val->created_at_old)->month);
+//        });
+
+
+//        $groups = array_keys($res->toArray());
+//        $avgs = [];
+//        foreach ($groups as $group){
+//            $avgs[$group] = round($res[$group]->avg('benefit'));
+//        }
 
         //dd($avgs);
 
