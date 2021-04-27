@@ -29,8 +29,12 @@ class TestChart extends BaseChart
 
         $avgs = [];
 
-        foreach ($quotes as $key => $quote){
-            $avgs[$key] = $quote->avg('benefit');
+
+        foreach ($quotes->chunk(5) as $chunks){
+            foreach ($chunks as $key => $quote){
+                $avgs[$key] = $quote->avg('benefit');
+
+            }
         }
 
 

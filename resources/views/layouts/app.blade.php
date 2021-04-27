@@ -14,6 +14,8 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+        <script src="https://kit.fontawesome.com/657ce564b8.js" crossorigin="anonymous"></script>
+
         @livewireStyles
         <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
         <!-- Chartisan -->
@@ -39,7 +41,7 @@
 
 
             <!-- Page Content -->
-            <main class="pl-48">
+            <main class="pl-48 ">
                 {{ $slot }}
             </main>
         </div>

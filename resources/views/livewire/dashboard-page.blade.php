@@ -27,7 +27,12 @@
         const chart2 = new Chartisan({
             el: '#chart2',
             url: "@chart('smoker_chart')",
-            hooks: new ChartisanHooks().datasets([{type:'bar'}]),
+            type:'pie',
+            hooks: new ChartisanHooks()
+            .datasets('pie')
+            .tooltip(true)
+            .colors()
+            .axis(false)
         });
     </script>
 </div>
