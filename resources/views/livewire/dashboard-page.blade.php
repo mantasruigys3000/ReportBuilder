@@ -1,4 +1,4 @@
-<div class=" ">
+<div class="">
    <h1 class="text-lg text-bold">Dashboard</h1>
 
     <div class="flex flex-wrap">

@@ -1,4 +1,4 @@
-<div>
+<div class="bg-white">
     <div class="flex flex-row justify-between items-center pr-2">
         <div >
             <img src="{{asset('images/logo.png')}}" alt="">
