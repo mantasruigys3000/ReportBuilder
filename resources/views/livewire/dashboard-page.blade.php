@@ -49,7 +49,9 @@
                             const chart3 = new Chartisan({
                                 el: '#chart3',
                                 url: "@chart('quote_type_age_count')" + "?q={{"last month"}}",
-
+                                hooks: new ChartisanHooks()
+                                    .tooltip(true)
+                                    .legend()
                             });
                         </script>
                     </div>

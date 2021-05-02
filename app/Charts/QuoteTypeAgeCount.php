@@ -20,13 +20,39 @@ class QuoteTypeAgeCount extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $quote = Quote::first();
-        dd(Quote::first()->client_1->dob);
+
+        $quotes = Quote::select('protection_subtype','id','client_one','created_at')->where('created_at','>=',Carbon::now()->subMonth())->cursor();
+        $quotes = $quotes->groupBy(function ($q){
+            return $q->protection_subtype;
+        });
+
+        $counts = [];
+
+        foreach ($quotes as $key => $arr){
+            if(!key_exists($key,$counts)){
+               $counts[$key] = [];
+            }
+            foreach ($arr as $quote){
+
+                $age = $quote->client_1->ageAt($quote->created_at);
+                $ageRange = $quote->client_1->ageRange($age);
+                if(key_exists($ageRange,$counts[$key])){
+                    $counts[$key][$ageRange]++;
+                }else{
+                    $counts[$key][$ageRange] = 0;
+
+                }
+            }
+        }
+
+        dd($counts);
 
 
         return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Sample', [1, 2, 3])
-            ->dataset('Sample 2', [3, 2, 1]);
+            ->labels(['18-25', '26-35', '36-45', '46-55', '56+'])
+            ->dataset('Level Term', [1, 2, 3])
+            ->dataset('Motrgage Protection', [3, 2, 1])
+            ->dataset('Family Income benefit', [3, 2, 1]);
     }
+
 }
