@@ -25,7 +25,7 @@ class TestChart extends BaseChart
             $quotes = Quote::select('benefit','created_at')->cursor();
             $quotes = $quotes->groupBy(function($val){
                 $createdAtCarbon = $val->created_at;
-                return $createdAtCarbon->month . '/' . $createdAtCarbon->year;
+                return $createdAtCarbon->englishMonth . '/' . $createdAtCarbon->year;
 
             });
         }else if ($request->q == "last month"){
@@ -34,7 +34,7 @@ class TestChart extends BaseChart
 
             $quotes = $quotes->groupBy(function($val){
                 $createdAtCarbon = $val->created_at;
-                return $createdAtCarbon->day . '/' . $createdAtCarbon->month;
+                return $createdAtCarbon->day . '/' . $createdAtCarbon->englishMonth;
 
             });
 
@@ -43,8 +43,22 @@ class TestChart extends BaseChart
         }
 
 
+        /*
+         * 18-25 one
+         * 26-35 two
+         * 36-45 three
+         * 46-55 four
+         * 56+ five
+         *
+         */
+
 
         $avgs = [];
+        $ages_one = [];
+        $ages_two = [];
+        $ages_three = [];
+        $ages_four = [];
+        $ages_five = [];
 
 
         foreach ($quotes->chunk(5) as $chunks){
@@ -54,42 +68,21 @@ class TestChart extends BaseChart
             }
         }
 
-
-
-        //dd($quotes->first()->avg('benefit'));
-
-//        $avgs = [];
+//        $new_quotes = [];
+//        foreach ($quotes->chunk(5) as $chunks){
+//            foreach ($chunks as $key => $quote){
 //
-//        foreach ($quotes as $quote){
-//            $createdAtCarbon = $quote->quoted_at;
 //
-//            //dd($createdAtCarbon);
-//            $avgs[$createdAtCarbon->year . '/' . $createdAtCarbon->month] =
+//                $maxes[$key] = $quote->max('benefit');
+//
+//            }
 //        }
-//        dd($quotes);
-
-//        $quotes = DB::select("SELECT quotes.benefit, quotes.created_at_old from QUOTES");
-//        $quotes = collect($quotes);
-        //dd($quotes->first());
-
-//        $res= $quotes->groupBy(function($val) {
-//            return (Carbon::createFromFormat('d/m/Y H:i',$val->created_at_old)->year . '/' . Carbon::createFromFormat('d/m/Y H:i',$val->created_at_old)->month);
-//        });
-
-
-//        $groups = array_keys($res->toArray());
-//        $avgs = [];
-//        foreach ($groups as $group){
-//            $avgs[$group] = round($res[$group]->avg('benefit'));
-//        }
-
-        //dd($avgs);
 
 
 
         return Chartisan::build()
             ->labels(array_keys($avgs))
-            ->dataset('Averages', array_values($avgs));
+            ->dataset('Average benefit quoted for', array_values($avgs));
 
     }
 }

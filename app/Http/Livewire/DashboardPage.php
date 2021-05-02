@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class DashboardPage extends Component
 {
-    public $tab = "all time";
+    public $tab = "last month";
 
     public $quotesBySmokers = "all time";
 

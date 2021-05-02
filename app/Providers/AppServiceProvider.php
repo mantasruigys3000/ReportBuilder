@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Charts\QuoteTypeAgeCount;
 use App\Charts\SmokerChart;
 use Illuminate\Support\ServiceProvider;
 use ConsoleTVs\Charts\Registrar as Charts;
@@ -31,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\Charts\TestChart::class,
             SmokerChart::class,
+            QuoteTypeAgeCount::class,
+
         ]);
     }
 }

@@ -18,7 +18,7 @@
                                 const chart = new Chartisan({
                                     el: '#chart',
                                     url: "@chart('test_chart')" + "?q={{"last month"}}",
-                                    hooks: new ChartisanHooks().datasets([{type:'line'}]),
+                                    hooks: new ChartisanHooks().datasets([{type:'line',fill: true},]).colors(['#ff0000','#00ff00']).tooltip(undefined).legend(),
                                 });
                             </script>
                         </div>
@@ -43,7 +43,16 @@
                         </div>
 
                     </div>
-                    <div class="w-1/2">chart4</div>
+                    <div class="w-1/2">
+                        <div id="chart3" class="h-80"></div>
+                        <script>
+                            const chart3 = new Chartisan({
+                                el: '#chart3',
+                                url: "@chart('quote_type_age_count')" + "?q={{"last month"}}",
+
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
             @break

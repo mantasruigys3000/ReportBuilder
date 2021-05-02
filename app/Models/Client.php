@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,11 @@ class Client extends Model
     protected $casts = [
         'smoker' => 'boolean',
     ];
+
+    protected $dates = [
+        'dob', 'created_at'
+    ];
+
 
 //    public function getQuotesAttribute(){
 //        return $this->primaryQuotes->concat($this->secondaryQuotes);
@@ -39,6 +45,14 @@ class Client extends Model
 //        return $this->quotes->sortBy('quoted_at')->first()->quoted_at;
 //    }
 
+
+    public function ageAt(Carbon $date){
+        return $date->diffInYears($this->dob);
+    }
+
+    public function getAgeAttribute(){
+        return Carbon::now()->diffInYears($this->dob);
+    }
 
 
 }
