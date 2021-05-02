@@ -23,16 +23,29 @@ class SmokerChart extends BaseChart
     {
         //dd(Quote::whereHas('client_1')->with('client_1')->first());
 
-        $date = Carbon::createFromFormat('d/m/Y H:i','23/09/2020 00:00');
+        $date = Carbon::now()->subMonth();
         DB::enableQueryLog();
 
-        $non_smoker_quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
-            $query->where('smoker',false);
-        })->cursor();
+        if($request->q == "all time"){
+            $non_smoker_quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
+                $query->where('smoker',false);
+            })->cursor();
 
-        $smoker_quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
-            $query->where('smoker',true);
-        })->cursor();
+            $smoker_quotes = Quote::select('id','client_one')->whereHas('client_1',function($query){
+                $query->where('smoker',true);
+            })->cursor();
+        }
+        else if ($request->q == "last month"){
+            $non_smoker_quotes = Quote::select('id','client_one')->where('created_at', '>=' ,$date)->whereHas('client_1',function($query){
+                $query->where('smoker',false);
+            })->cursor();
+
+            $smoker_quotes = Quote::select('id','client_one')->where('created_at', '>=' ,$date)->whereHas('client_1',function($query){
+                $query->where('smoker',true);
+            })->cursor();
+        }
+
+
 
 
         $result = [

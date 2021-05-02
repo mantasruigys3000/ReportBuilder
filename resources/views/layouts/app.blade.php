@@ -43,7 +43,7 @@
             <!-- Page Content -->
             <main class="pl-48 ">
                 <div class="  px-4 py-4 ">
-                    <div class=" px-4 py-4 bg-white ">
+                    <div class=" px-4 py-4  ">
                         {{ $slot }}
                     </div>
                 </div>

@@ -20,12 +20,29 @@ class TestChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $quotes = Quote::select('benefit','created_at')->cursor();
-        $quotes = $quotes->groupBy(function($val){
-            $createdAtCarbon = $val->created_at;
-            return $createdAtCarbon->year . '/' . $createdAtCarbon->month;
 
-        });
+        if($request->q =="all time"){
+            $quotes = Quote::select('benefit','created_at')->cursor();
+            $quotes = $quotes->groupBy(function($val){
+                $createdAtCarbon = $val->created_at;
+                return $createdAtCarbon->month . '/' . $createdAtCarbon->year;
+
+            });
+        }else if ($request->q == "last month"){
+            $date = Carbon::now()->subMonth();
+            $quotes = Quote::select('benefit','created_at')->where('created_at', '>=', $date)->cursor();
+
+            $quotes = $quotes->groupBy(function($val){
+                $createdAtCarbon = $val->created_at;
+                return $createdAtCarbon->day . '/' . $createdAtCarbon->month;
+
+            });
+
+        }else{
+            dd('q not set');
+        }
+
+
 
         $avgs = [];
 

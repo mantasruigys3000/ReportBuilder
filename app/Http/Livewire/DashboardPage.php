@@ -6,6 +6,11 @@ use Livewire\Component;
 
 class DashboardPage extends Component
 {
+    public $tab = "all time";
+
+    public $quotesBySmokers = "all time";
+
+
     public function mount(){
     }
     public function render()
