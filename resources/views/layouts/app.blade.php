@@ -37,11 +37,21 @@
 {{--                    </div>--}}
 {{--                </header>--}}
 {{--            @endif--}}
+            <div class=" z-50 fixed bg-white flex flex-row justify-between items-center pr-2 w-full  ">
+                <div class="" >
+                    <img src="{{asset('images/logo.png')}}" alt="">
+                </div>
+
+                <div class="">
+                    Hello {{auth()->user()->name}}
+                </div>
+            </div>
+
             <livewire:sidebar-navbar ></livewire:sidebar-navbar>
 
 
             <!-- Page Content -->
-            <main class="pl-48 ">
+            <main class="pl-48 pt-16 relative ">
                 <div class="  px-4 py-4 ">
                     <div class=" px-4 py-4  ">
                         {{ $slot }}

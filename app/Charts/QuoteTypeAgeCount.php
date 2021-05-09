@@ -21,29 +21,73 @@ class QuoteTypeAgeCount extends BaseChart
     public function handler(Request $request): Chartisan
     {
 
-        $quotes = Quote::select('protection_subtype','id','client_one','created_at')->where('created_at','>=',Carbon::now()->subMonth())->cursor();
-        $quotes = $quotes->groupBy(function ($q){
-            return $q->protection_subtype;
+        $date = Carbon::now()->subYears(2);
+
+
+        $quotes =  Quote::select('protection_subtype','client_one','created_at')->where('created_at','>=',$date)->whereHas('client_1')->cursor()->groupBy(function($q){
+            return $q->client1AgeRangeQuoted;
         });
 
         $counts = [];
 
-        foreach ($quotes as $key => $arr){
-            if(!key_exists($key,$counts)){
-               $counts[$key] = [];
+        //$quotes = Quote::first();
+
+        dd($quotes->all());
+
+
+
+
+        $groups = [];
+
+        foreach($quotes as $key => $quoteList){
+//            /dd($quoteList);
+            $groups[$key] = $quoteList->groupBy('client_1.sex');
+        }
+
+
+        foreach ($chunk as $quote){
+            $subtype = $quote->protection_subtype;
+            if (!key_exists($subtype,$counts)){
+                $counts[$subtype] = [];
             }
-            foreach ($arr as $quote){
 
-                $age = $quote->client_1->ageAt($quote->created_at);
-                $ageRange = $quote->client_1->ageRange($age);
-                if(key_exists($ageRange,$counts[$key])){
-                    $counts[$key][$ageRange]++;
-                }else{
-                    $counts[$key][$ageRange] = 0;
+            $age = $age = $quote->client_1->ageAt($quote->created_at);
+            $ageRange = $quote->client_1->ageRange($age);
 
-                }
+            if (key_exists($ageRange,$counts[$subtype])){
+                $counts[$subtype][$ageRange]++;
+            }else{
+                $counts[$subtype][$ageRange] = 1;
             }
         }
+
+        $quotes = $quotes->groupBy(function ($q){
+            return $q->protection_subtype;
+        });
+
+
+
+        $quotes->chunk(300,function($quotes){
+            dd($quotes);
+            foreach ($quotes as $key => $arr){
+                if(!key_exists($key,$counts)){
+                    $counts[$key] = [];
+                }
+                foreach ($arr as $quote){
+
+                    $age = $quote->client_1->ageAt($quote->created_at);
+                    $ageRange = $quote->client_1->ageRange($age);
+                    if(key_exists($ageRange,$counts[$key])){
+                        $counts[$key][$ageRange]++;
+                    }else{
+                        $counts[$key][$ageRange] = 0;
+
+                    }
+                }
+            }
+        });
+
+
 
         dd($counts);
 
