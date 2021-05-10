@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ChartsPage;
 use App\Http\Livewire\DashboardPage;
 use App\Http\Livewire\IndexPage;
 use App\Http\Livewire\Landing;
@@ -24,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
     Route::get('/landing', Landing::class)->name('landing');
     Route::get('/dashboard', DashboardPage::class)->name('dashboard');
     Route::get('/index', IndexPage::class)->name('index');
+    Route::get('/chartspage', ChartsPage::class)->name('chartspage');
 
 });
 
