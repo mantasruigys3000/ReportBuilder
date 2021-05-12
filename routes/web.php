@@ -22,8 +22,12 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/logoutuser',function (){
+Route::get('/logoutuser',function (\Illuminate\Http\Request $request){
     Auth::logout();
+    //dd($request);
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
     return redirect('/login');
 });
 
