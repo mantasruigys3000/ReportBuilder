@@ -43,7 +43,8 @@
                 </div>
 
                 <div class="">
-                    Hello {{auth()->user()->name}}
+                    <p>Hello {{auth()->user()->name}}</p>
+                    <a href="/logoutuser">logout</a>
                 </div>
             </div>
 
