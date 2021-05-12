@@ -165,9 +165,13 @@ class QuoteTypeAgeCount extends BaseChart
         //dd($counts);
         return Chartisan::build()
             ->labels(['-17', '18-25', '26-35', '36-45', '46-55', '56+'])
-            ->dataset('Level Term', array_values($counts["TERM"]))
-            ->dataset('Mortgage Protection', array_values($counts["MORTGAGEPROTECTION"]))
-            ->dataset('Family Income benefit', array_values($counts["FAMILYINCOMEBENEFIT"]));
+            ->advancedDataset('Level Term', array_values($counts["TERM"]),[])
+            ->advancedDataset('Mortgage Protection', array_values($counts["MORTGAGEPROTECTION"]),[
+                'hidden' => true,
+            ])
+            ->advancedDataset('Family Income benefit', array_values($counts["FAMILYINCOMEBENEFIT"]),[
+                'hidden' => true,
+            ]);
     }
 
 }
