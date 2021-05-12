@@ -84,7 +84,7 @@ class AgeOverTimeChart extends BaseChart
 
         return Chartisan::build()
             ->labels(array_keys($quotes->toArray()))
-            ->dataset('-17', array_values($datasets['-17']))
+            ->dataset('-18', array_values($datasets['-17']))
             ->dataset('18-25', array_values($datasets['18-25']))
             ->dataset('26-35', array_values($datasets['26-35']))
             ->dataset('36-45', array_values($datasets['36-45']))

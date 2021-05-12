@@ -32,7 +32,15 @@
                                 const chart1 = new Chartisan({
                                     el: '#chart1',
                                     url: "@chart('age_over_time_chart')" + "?q={{"last month"}}",
-                                    hooks: new ChartisanHooks().datasets([{type:'line',fill: true},]).colors(['#ff0000','#00ff00']).tooltip(undefined).legend(),
+                                    hooks: new ChartisanHooks().datasets([{type:'line',fill: true},])
+                                        .colors([
+                                            '#ff0000',
+                                            '#00ff00',
+                                            '#0000ff',
+                                            '#000000',
+                                            '#FF00FF',
+                                            '#00FFFF',
+                                        ]).tooltip(undefined).legend(),
                                 });
                             </script>
                         </div>
