@@ -24,10 +24,16 @@ class QuoteTypeAgeCount extends BaseChart
     {
         $counts = [];
 
+        $date = Carbon::now()->subMonth();
+
+
         $quotes = DB::select(DB::raw("SELECT q.client_one,q.created_at,q.protection_subtype, c.id, c.dob, TIMESTAMPDIFF(year, c.dob, q.created_at) AS 'diff'
  FROM quotes q, clients c where q.client_one = c.id"));
 
         $quotes = Quote::hydrate($quotes);
+
+        $quotes = $quotes->where('created_at','>=',$date);
+        //dd($quotes);
 
         $quotes= $quotes->groupby(['protection_subtype',function ($q){
             $age = $q->diff;
@@ -69,12 +75,12 @@ class QuoteTypeAgeCount extends BaseChart
 
         foreach (array_keys($quotes->toArray()) as $key ) {
             $counts[$key] = [
-                '-17' => $quotes[$key]['-17']? count($quotes[$key]['-17']): 0,
-                '18-25' => $quotes[$key]['18-25']?count($quotes[$key]['18-25']): 0,
-                '26-35' => $quotes[$key]['26-35']?count($quotes[$key]['26-35']): 0,
-                '36-45' => $quotes[$key]['36-45']?count($quotes[$key]['36-45']): 0,
-                '46-55' => $quotes[$key]['46-55']?count($quotes[$key]['46-55']): 0,
-                '56+' => $quotes[$key]['56+']?count($quotes[$key]['56+']): 0
+                '-17' => isset($quotes[$key]['-17'])? count($quotes[$key]['-17']): 0,
+                '18-25' => isset($quotes[$key]['18-25'])?count($quotes[$key]['18-25']): 0,
+                '26-35' => isset($quotes[$key]['26-35'])?count($quotes[$key]['26-35']): 0,
+                '36-45' => isset($quotes[$key]['36-45'])?count($quotes[$key]['36-45']): 0,
+                '46-55' => isset($quotes[$key]['46-55'])?count($quotes[$key]['46-55']): 0,
+                '56+' => isset($quotes[$key]['56+'])?count($quotes[$key]['56+']): 0
             ];
         }
 //        $counts = [
