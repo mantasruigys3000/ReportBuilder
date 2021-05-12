@@ -1,6 +1,6 @@
 <div class="bg-white">
     <div class="flex flex-wrap">
-        <div wire:click="click('/')" class="w-1/2 hover:cursor-pointer hover:opacity-50">
+        <div wire:click="click('/viewchart/typecount')" class="w-1/2 hover:cursor-pointer hover:opacity-50">
             <div>Amount of quotes made by each age group</div>
             <div id="chart3" class="h-80"></div>
             <script>

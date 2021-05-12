@@ -24,6 +24,20 @@
                         </div>
                     </div>
 
+                    <div class="w-full">
+                        <h2>Average benefit quote each month </h2>
+                        <div>
+                            <div id="chart1" class="h-80"></div>
+                            <script>
+                                const chart1 = new Chartisan({
+                                    el: '#chart1',
+                                    url: "@chart('age_over_time_chart')" + "?q={{"last month"}}",
+                                    hooks: new ChartisanHooks().datasets([{type:'line',fill: true},]).colors(['#ff0000','#00ff00']).tooltip(undefined).legend(),
+                                });
+                            </script>
+                        </div>
+                    </div>
+
                     <div class="w-1/2">
                         <div class="flex flex-col ">
                             <p>Quotes made by smokers/non smokers ALL TIME</p>

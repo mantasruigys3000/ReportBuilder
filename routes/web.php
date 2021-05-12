@@ -38,5 +38,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
     Route::get('/index', IndexPage::class)->name('index');
     Route::get('/chartspage', ChartsPage::class)->name('chartspage');
 
+    Route::prefix('viewchart')->group(function(){
+        Route::get('/typecount',\App\Http\Livewire\ViewTypeCount::class)->name('typecount');
+    });
+
 });
 

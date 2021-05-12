@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="525c0630-1522-4a32-b6de-742204600baf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ChartsPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ChartsPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Charts/QuoteTypeAgeCount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Charts/QuoteTypeAgeCount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/charts-page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/charts-page.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard-page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard-page.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,10 +191,11 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1018" y="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1619286674296">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="668" y="351" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620856545787">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1018" y="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.0.1920.1080/0.0.2560.1440/2560.0.1680.1050@0.0.2560.1440" timestamp="1619286674296" />
+    <state x="668" y="351" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1620856545787" />
     <state x="1018" y="482" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1617921043542" />
     <state x="341" y="164" key="SettingsEditor" timestamp="1616430902116">
       <screen x="0" y="0" width="1680" height="1050" />
@@ -203,14 +206,14 @@
     </state>
     <state x="648" y="314" width="574" height="580" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1620569785904" />
     <state x="988" y="430" width="584" height="580" key="find.popup/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1619976937783" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1620833123636">
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1620857415280">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/-1920.0.1920.1080/0.0.2560.1440/2560.0.1680.1050@0.0.2560.1440" timestamp="1619286389221" />
     <state x="770" y="320" width="1021" height="928" key="search.everywhere.popup/-1920.23.1920.1057/0.0.2560.1369/2560.23.1680.1027@0.0.2560.1369" timestamp="1617827419556" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1620833123636" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1620857415280" />
     <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/0.0.2560.1369/-1920.23.1920.1057/2560.23.1680.1027@0.0.2560.1369" timestamp="1618222368364" />
-    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1619977253682" />
+    <state x="770" y="337" width="1021" height="977" key="search.everywhere.popup/0.0.2560.1440/-1920.0.1920.1080/2560.0.1680.1050@0.0.2560.1440" timestamp="1620837715147" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

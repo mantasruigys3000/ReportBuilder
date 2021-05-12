@@ -22,6 +22,7 @@ class QuoteTypeAgeCount extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
+
         $counts = [];
 
         $date = Carbon::now()->subMonth();
@@ -32,7 +33,13 @@ class QuoteTypeAgeCount extends BaseChart
 
         $quotes = Quote::hydrate($quotes);
 
-        $quotes = $quotes->where('created_at','>=',$date);
+        if($request->q == "last month"){
+            $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
+
+        }
+
+        //$quotes = $quotes->wherebetween('created_at',[$from,$to]);
+        //dd($quotes);
         //dd($quotes);
 
         $quotes= $quotes->groupby(['protection_subtype',function ($q){
@@ -171,13 +178,9 @@ class QuoteTypeAgeCount extends BaseChart
         //dd($counts);
         return Chartisan::build()
             ->labels(['-17', '18-25', '26-35', '36-45', '46-55', '56+'])
-            ->advancedDataset('Level Term', array_values($counts["TERM"]),[])
-            ->advancedDataset('Mortgage Protection', array_values($counts["MORTGAGEPROTECTION"]),[
-                'hidden' => true,
-            ])
-            ->advancedDataset('Family Income benefit', array_values($counts["FAMILYINCOMEBENEFIT"]),[
-                'hidden' => true,
-            ]);
+            ->dataset('Level Term quotes', array_values($counts["TERM"]))
+            ->dataset('Mortgage Protection quotes', array_values($counts["MORTGAGEPROTECTION"]))
+            ->dataset('Family Income benefit quotes', array_values($counts["FAMILYINCOMEBENEFIT"]));
     }
 
 }

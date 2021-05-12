@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Charts\AgeOverTimeChart;
 use App\Charts\QuoteTypeAgeCount;
 use App\Charts\SmokerChart;
 use Illuminate\Support\ServiceProvider;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\TestChart::class,
             SmokerChart::class,
             QuoteTypeAgeCount::class,
+            AgeOverTimeChart::class,
 
         ]);
     }
