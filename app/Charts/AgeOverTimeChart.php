@@ -26,28 +26,50 @@ class AgeOverTimeChart extends BaseChart
         $quotes = Quote::hydrate($quotes);
 
         if($request->q == "last month"){
-           // $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
+           $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
 
+            $quotes = $quotes->groupby([function($q){
+                return $q->created_at->day . '/'.  $q->created_at->englishMonth;
+            },function ($q){
+                $age = $q->diff;
+
+                if($age < 18){
+                    return '-17';
+                }else if ($age >= 18 && $age <=25){
+                    return '18-25';
+                }else if ($age >= 26 && $age <=35){
+                    return '26-35';
+                }else if ($age >= 36 && $age <=45){
+                    return '36-45';
+                }else if ($age >= 46 && $age <=55){
+                    return '46-55';
+                }else if ($age >= 56){
+                    return '56+';
+                }
+            }]);
+
+        }else{
+            $quotes = $quotes->groupby([function($q){
+                return $q->created_at->englishMonth . '/'.  $q->created_at->year;
+            },function ($q){
+                $age = $q->diff;
+
+                if($age < 18){
+                    return '-17';
+                }else if ($age >= 18 && $age <=25){
+                    return '18-25';
+                }else if ($age >= 26 && $age <=35){
+                    return '26-35';
+                }else if ($age >= 36 && $age <=45){
+                    return '36-45';
+                }else if ($age >= 46 && $age <=55){
+                    return '46-55';
+                }else if ($age >= 56){
+                    return '56+';
+                }
+            }]);
         }
-        $quotes = $quotes->groupby([function($q){
-            return $q->created_at->month . '/'.  $q->created_at->year;
-        },function ($q){
-            $age = $q->diff;
 
-            if($age < 18){
-                return '-17';
-            }else if ($age >= 18 && $age <=25){
-                return '18-25';
-            }else if ($age >= 26 && $age <=35){
-                return '26-35';
-            }else if ($age >= 36 && $age <=45){
-                return '36-45';
-            }else if ($age >= 46 && $age <=55){
-                return '46-55';
-            }else if ($age >= 56){
-                return '56+';
-            }
-        }]);
 
         $counts = [];
 

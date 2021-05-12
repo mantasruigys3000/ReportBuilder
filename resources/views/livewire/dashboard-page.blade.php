@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="w-full">
-                        <h2>Average benefit quote each month </h2>
+                        <h2>Number of quotes made this month </h2>
                         <div>
                             <div id="chart1" class="h-80"></div>
                             <script>

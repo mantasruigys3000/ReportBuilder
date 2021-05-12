@@ -36,11 +36,15 @@ class QuoteTypeAgeCount extends BaseChart
         if($request->q == "last month"){
             $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
 
+
+
         }
 
         //$quotes = $quotes->wherebetween('created_at',[$from,$to]);
         //dd($quotes);
         //dd($quotes);
+
+
 
         $quotes= $quotes->groupby(['protection_subtype',function ($q){
             $age = $q->diff;
