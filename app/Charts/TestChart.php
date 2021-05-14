@@ -38,6 +38,7 @@ class TestChart extends BaseChart
 
             });
 
+
         }else{
             dd('q not set');
         }

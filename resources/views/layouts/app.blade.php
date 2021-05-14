@@ -21,6 +21,7 @@
         <!-- Chartisan -->
         <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
 
+
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>

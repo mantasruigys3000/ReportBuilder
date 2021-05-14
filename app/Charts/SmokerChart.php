@@ -58,6 +58,6 @@ class SmokerChart extends BaseChart
 
         return Chartisan::build()
             ->labels(array_keys($result))
-            ->dataset('dataset 1',array_values($result));
+            ->dataset('Smoker data',array_values($result));
     }
 }

@@ -28,8 +28,10 @@ class QuoteTypeAgeCount extends BaseChart
         $date = Carbon::now()->subMonth();
 
 
-        $quotes = DB::select(DB::raw("SELECT q.client_one,q.created_at,q.protection_subtype, c.id, c.dob, TIMESTAMPDIFF(year, c.dob, q.created_at) AS 'diff'
- FROM quotes q, clients c where q.client_one = c.id"));
+        $quotes = DB::select(DB::raw("SELECT q.client_one,q.created_at,q.protection_subtype,
+         c.id, c.dob, TIMESTAMPDIFF(year, c.dob, q.created_at) AS 'diff'
+         FROM quotes q, clients c
+          where q.client_one = c.id"));
 
         $quotes = Quote::hydrate($quotes);
 

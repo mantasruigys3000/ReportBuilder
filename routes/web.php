@@ -32,15 +32,17 @@ Route::get('/logoutuser',function (\Illuminate\Http\Request $request){
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group( function () {
+
+
     //Route::get('/landing', Landing::class)->name('landing');
 
     Route::get('/dashboard', DashboardPage::class)->name('dashboard');
     Route::get('/index', IndexPage::class)->name('index');
     Route::get('/chartspage', ChartsPage::class)->name('chartspage');
 
-    Route::prefix('viewchart')->group(function(){
-        Route::get('/typecount',\App\Http\Livewire\ViewTypeCount::class)->name('typecount');
-    });
+//    Route::prefix('viewchart')->group(function(){
+//        Route::get('/typecount',\App\Http\Livewire\ViewTypeCount::class)->name('typecount');
+//    });
 
 });
 

@@ -11,7 +11,7 @@
             <div class="bg-white">
                 <div class="flex flex-wrap">
                     <div class="w-full h-80">
-                        <h2>Average benefit quote each month </h2>
+                        <h2 class="text-center">Average benefit quote each day for the last month </h2>
                         <div>
                             <div id="chart" class="h-80"></div>
                             <script>
@@ -48,7 +48,7 @@
 
                     <div class="w-1/2">
                         <div class="flex flex-col ">
-                            <p>Quotes made by smokers/non smokers ALL TIME</p>
+                            <p>Quotes made by smokers/non smokers last month</p>
                             <div id="chart2" class="h-80"></div>
                             <script>
                                 const chart2 = new Chartisan({
@@ -97,14 +97,36 @@
                         </div>
                     </div>
 
+                    <div class="w-full">
+                        <h2>Number of quotes made </h2>
+                        <div>
+                            <div id="chart11" class="h-80"></div>
+                            <script>
+                                const chart11 = new Chartisan({
+                                    el: '#chart11',
+                                    url: "@chart('age_over_time_chart')",
+                                    hooks: new ChartisanHooks().datasets([{type:'line',fill: true},])
+                                        .colors([
+                                            '#ff0000',
+                                            '#00ff00',
+                                            '#0000ff',
+                                            '#000000',
+                                            '#FF00FF',
+                                            '#00FFFF',
+                                        ]).tooltip(undefined).legend(),
+                                });
+                            </script>
+                        </div>
+                    </div>
+
                     <div class="w-1/2">
                         <div class="flex flex-col ">
-                            <p>Quotes made by smokers/non smokers ALL TIME</p>
-                            <div id="chart2" class="h-80"></div>
+                            <p>Quotes made by smokers/non smokers all time</p>
+                            <div id="chart22" class="h-80"></div>
                             <script>
-                                const chart2 = new Chartisan({
-                                    el: '#chart2',
-                                    url: "@chart('smoker_chart')" + "?q={{"all time"}}",
+                                const chart22 = new Chartisan({
+                                    el: '#chart22',
+                                    url: "@chart('smoker_chart')"+ "?q={{"all time"}}",
                                     type:'pie',
                                     hooks: new ChartisanHooks()
                                         .datasets('pie')
@@ -116,7 +138,20 @@
                         </div>
 
                     </div>
-                    <div class="w-1/2">chart4</div>
+                    <div class="w-1/2">
+                        <div id="chart33" class="h-80"></div>
+                        <script>
+                            const chart33 = new Chartisan({
+                                el: '#chart33',
+                                url: "@chart('quote_type_age_count')",
+                                hooks: new ChartisanHooks()
+                                    .tooltip(true)
+                                    .legend()
+                            });
+                        </script>
+                    </div>
+                </div>
+
                 </div>
             </div>
             @break
