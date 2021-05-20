@@ -25,21 +25,21 @@ class Client extends Model
     ];
 
 
-//    public function getQuotesAttribute(){
-//        return $this->primaryQuotes->concat($this->secondaryQuotes);
-//    }
+    public function getQuotesAttribute(){
+        return $this->primaryQuotes->concat($this->secondaryQuotes);
+    }
 
 //    public function quotes(){
-//        return $this->hasMany(Quote::class,)
+//        return $this->hasMany(Quote::class,['client_one','client_two']);
 //    }
 
-//    public function primaryQuotes(){
-//        return $this->hasMany(Quote::class,'client_one','id');
-//    }
-//
-//    public function secondaryQuotes(){
-//        return $this->hasMany(Quote::class,'client_two','id');
-//    }
+    public function primaryQuotes(){
+        return $this->hasMany(Quote::class,'client_one','id');
+    }
+
+    public function secondaryQuotes(){
+        return $this->hasMany(Quote::class,'client_two','id');
+    }
 //
 //    public function getCreatedAtByQuoteAttribute(){
 //        return $this->quotes->sortBy('quoted_at')->first()->quoted_at;

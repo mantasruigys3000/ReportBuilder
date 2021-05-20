@@ -10,10 +10,18 @@ class IndexPage extends Component
 {
     public $tab = "clients";
 
+    public $currentClient = null;
+
+
 
     public $quotes = [];
 
     use WithPagination;
+
+    public function setCurrentClient(Client $client){
+        $this->currentClient = $client;
+
+    }
 
 
     public function render()
@@ -21,7 +29,7 @@ class IndexPage extends Component
 
 
         return view('livewire.index-page',[
-            'clients' => Client::paginate(100),
+            'clients' => Client::where('smoker',true)->paginate(30),
         ]);
     }
 }
