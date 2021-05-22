@@ -31,7 +31,7 @@
                             <script>
                                 const chart1 = new Chartisan({
                                     el: '#chart1',
-                                    url: "@chart('age_over_time_chart')" + "?q={{"last month"}}",
+                                    url: "@chart('age_over_time_chart')" + "?from=2021-03-26",
                                     hooks: new ChartisanHooks().datasets([{type:'line',fill: true},])
                                         .colors([
                                             '#ff0000',
@@ -70,7 +70,7 @@
                         <script>
                             const chart3 = new Chartisan({
                                 el: '#chart3',
-                                url: "@chart('quote_type_age_count')" + "?q={{"last month"}}",
+                                url: "@chart('quote_type_age_count')" + "?from=2021-03-26",
                                 hooks: new ChartisanHooks()
                                     .tooltip(true)
                                     .legend()

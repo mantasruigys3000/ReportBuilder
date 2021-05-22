@@ -20,37 +20,42 @@ class AgeOverTimeChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $quotes = DB::select(DB::raw("SELECT q.client_one,q.created_at,q.protection_subtype, c.id, c.dob, TIMESTAMPDIFF(year, c.dob, q.created_at) AS 'diff'
-        FROM quotes q, clients c where q.client_one = c.id"));
+        $fromParam = $request->get('from');
+        $from = null;
 
-        $quotes = Quote::hydrate($quotes);
+        $toParam = $request->get('to');
+        $to = null;
 
-        if($request->q == "last month"){
-           $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
+        $fromDate = null;
+        $toDate = null;
 
-            $quotes = $quotes->groupby([function($q){
-                return $q->created_at->day . '/'.  $q->created_at->englishMonth;
-            },function ($q){
-                $age = $q->diff;
 
-                if($age < 18){
-                    return '-17';
-                }else if ($age >= 18 && $age <=25){
-                    return '18-25';
-                }else if ($age >= 26 && $age <=35){
-                    return '26-35';
-                }else if ($age >= 36 && $age <=45){
-                    return '36-45';
-                }else if ($age >= 46 && $age <=55){
-                    return '46-55';
-                }else if ($age >= 56){
-                    return '56+';
-                }
-            }]);
+        if($fromParam === null){
+            $from = Carbon::createFromFormat('d-m-Y','01-01-2015');
 
         }else{
-            $quotes = $quotes->groupby([function($q){
-                return $q->created_at->englishMonth . '/'.  $q->created_at->year;
+            $from =  Carbon::createFromFormat('Y-m-d',$fromParam);
+        }
+
+        if($toParam === null){
+            $to = Carbon::createFromFormat('d-m-Y','26-04-2021');
+        }else{
+            $to =  Carbon::createFromFormat('Y-m-d',$toParam);
+        }
+
+        $fromDate = $from->toDateTimeString();
+        $toDate = $to->toDateString();
+
+        $quotes = DB::select(DB::raw("SELECT q.client_one,q.created_at,q.protection_subtype, c.id, c.dob, TIMESTAMPDIFF(year, c.dob, q.created_at) AS 'diff'
+        FROM quotes q, clients c where q.client_one = c.id and q.created_at between '". $fromDate . "' AND '" . $toDate . "'"));
+
+        //$quotes = Quote::hydrate($quotes);
+
+
+        if($from->diffInYears($to) >= 1){
+            $quotes = array_group_by($quotes,function($q){
+
+                return Carbon::createFromFormat('Y-m-d H:i:s',$q->created_at)->englishMonth . '/'.  Carbon::createFromFormat('Y-m-d H:i:s',$q->created_at)->year;
             },function ($q){
                 $age = $q->diff;
 
@@ -67,15 +72,84 @@ class AgeOverTimeChart extends BaseChart
                 }else if ($age >= 56){
                     return '56+';
                 }
-            }]);
+            });
+        }else{
+            $quotes = array_group_by($quotes,function($q){
+
+                return Carbon::createFromFormat('Y-m-d H:i:s',$q->created_at)->day . '/'.  Carbon::createFromFormat('Y-m-d H:i:s',$q->created_at)->englishMonth;
+            },function ($q){
+                $age = $q->diff;
+
+                if($age < 18){
+                    return '-17';
+                }else if ($age >= 18 && $age <=25){
+                    return '18-25';
+                }else if ($age >= 26 && $age <=35){
+                    return '26-35';
+                }else if ($age >= 36 && $age <=45){
+                    return '36-45';
+                }else if ($age >= 46 && $age <=55){
+                    return '46-55';
+                }else if ($age >= 56){
+                    return '56+';
+                }
+            });
         }
+
+
+
+
+//        if($request->q == "last month"){
+//           $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
+//
+//            $quotes = $quotes->groupby([function($q){
+//                return $q->created_at->day . '/'.  $q->created_at->englishMonth;
+//            },function ($q){
+//                $age = $q->diff;
+//
+//                if($age < 18){
+//                    return '-17';
+//                }else if ($age >= 18 && $age <=25){
+//                    return '18-25';
+//                }else if ($age >= 26 && $age <=35){
+//                    return '26-35';
+//                }else if ($age >= 36 && $age <=45){
+//                    return '36-45';
+//                }else if ($age >= 46 && $age <=55){
+//                    return '46-55';
+//                }else if ($age >= 56){
+//                    return '56+';
+//                }
+//            }]);
+//
+//        }else{
+//            $quotes = $quotes->groupby([function($q){
+//                return $q->created_at->englishMonth . '/'.  $q->created_at->year;
+//            },function ($q){
+//                $age = $q->diff;
+//
+//                if($age < 18){
+//                    return '-17';
+//                }else if ($age >= 18 && $age <=25){
+//                    return '18-25';
+//                }else if ($age >= 26 && $age <=35){
+//                    return '26-35';
+//                }else if ($age >= 36 && $age <=45){
+//                    return '36-45';
+//                }else if ($age >= 46 && $age <=55){
+//                    return '46-55';
+//                }else if ($age >= 56){
+//                    return '56+';
+//                }
+//            }]);
+//        }
 
 
         $counts = [];
 
         foreach ($quotes as $key => $quotegroup){
             foreach ($quotegroup as $keys2 => $list){
-                $counts[$key][$keys2] = $list->count();
+                $counts[$key][$keys2] = count($list);
 
             }
         }
@@ -105,7 +179,7 @@ class AgeOverTimeChart extends BaseChart
         //dd($datasets);
 
         return Chartisan::build()
-            ->labels(array_keys($quotes->toArray()))
+            ->labels(array_keys($quotes))
             ->dataset('-18', array_values($datasets['-17']))
             ->dataset('18-25', array_values($datasets['18-25']))
             ->dataset('26-35', array_values($datasets['26-35']))
