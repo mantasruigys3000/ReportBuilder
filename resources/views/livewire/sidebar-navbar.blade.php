@@ -7,6 +7,10 @@
                 </div>
                 <div class="text-rb-blue text-center font-bold flex flex-row justify-start  ">
                     <i class=" px-2  fas fa-chart-bar"></i>
+                    <a   href="{{route('chartspage')}}">Charts</a>
+                </div>
+                <div class="text-rb-blue text-center font-bold flex flex-row justify-start  ">
+                    <i class=" px-2  fas fa-chart-bar"></i>
                     <a   href="{{route('index')}}">Index</a>
                 </div>
 

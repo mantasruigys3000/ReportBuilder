@@ -27,28 +27,36 @@ class QuoteTypeAgeCount extends BaseChart
 
         $date = Carbon::now()->subMonth();
 
+        $fromParam = $request->get('from');
+        $from = null;
+
+        $toParam = $request->get('to');
+        $to = null;
+
+        if($fromParam === null){
+            $from = Carbon::createFromFormat('d-m-Y','01-01-2015')->toDateTimeString();
+        }else{
+            $from =  Carbon::createFromFormat('Y-m-d',$fromParam)->toDateTimeString();
+        }
+
+        if($toParam === null){
+            $to = Carbon::createFromFormat('d-m-Y','26-04-2021')->toDateTimeString();
+        }else{
+            $to =  Carbon::createFromFormat('Y-m-d',$toParam)->toDateTimeString();
+        }
+
+
 
         $quotes = DB::select(DB::raw("SELECT q.client_one,q.created_at,q.protection_subtype,
          c.id, c.dob, TIMESTAMPDIFF(year, c.dob, q.created_at) AS 'diff'
          FROM quotes q, clients c
-          where q.client_one = c.id"));
-
-        $quotes = Quote::hydrate($quotes);
-
-        if($request->q == "last month"){
-            $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
+          where q.client_one = c.id
+          AND q.created_at between '". $from . "' AND '" . $to . "'"));
 
 
+        //$quotes = Quote::hydrate($quotes);
 
-        }
-
-        //$quotes = $quotes->wherebetween('created_at',[$from,$to]);
-        //dd($quotes);
-        //dd($quotes);
-
-
-
-        $quotes= $quotes->groupby(['protection_subtype',function ($q){
+        $quotes = array_group_by($quotes,'protection_subtype',function ($q){
             $age = $q->diff;
 
             if($age < 18){
@@ -64,7 +72,40 @@ class QuoteTypeAgeCount extends BaseChart
             }else if ($age >= 56){
                 return '56+';
             }
-        }]);
+        });
+
+
+
+        if($request->q == "last month"){
+            $quotes = $quotes->where('created_at','>=',Carbon::now()->subMonth());
+
+
+
+        }
+
+        //$quotes = $quotes->wherebetween('created_at',[$from,$to]);
+        //dd($quotes);
+        //dd($quotes);
+
+
+
+//        $quotes= $quotes->groupby(['protection_subtype',function ($q){
+//            $age = $q->diff;
+//
+//            if($age < 18){
+//                return '-17';
+//            }else if ($age >= 18 && $age <=25){
+//                return '18-25';
+//            }else if ($age >= 26 && $age <=35){
+//                return '26-35';
+//            }else if ($age >= 36 && $age <=45){
+//                return '36-45';
+//            }else if ($age >= 46 && $age <=55){
+//                return '46-55';
+//            }else if ($age >= 56){
+//                return '56+';
+//            }
+//        }]);
         //dd($quotes);
 //
 //        $quotes = $quotes->groupBy(function ($q){
@@ -86,7 +127,7 @@ class QuoteTypeAgeCount extends BaseChart
 //        });
 //
 
-        foreach (array_keys($quotes->toArray()) as $key ) {
+        foreach (array_keys($quotes) as $key ) {
             $counts[$key] = [
                 '-17' => isset($quotes[$key]['-17'])? count($quotes[$key]['-17']): 0,
                 '18-25' => isset($quotes[$key]['18-25'])?count($quotes[$key]['18-25']): 0,

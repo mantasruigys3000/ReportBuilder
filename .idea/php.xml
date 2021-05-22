@@ -129,6 +129,7 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/sammyjo20/lasso" />
+      <path value="$PROJECT_DIR$/vendor/jakezatecky/array_group_by" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
