@@ -8,6 +8,7 @@
         <input id="toDate"   id="to" placeholder="to(dd/mm/yyyy)" type="date">
 
         <button onclick="update('{{$from}}' , '{{$to}}')">Get chart</button>
+        <div id="errordiv" class="text-red-600"></div>
 
         <div>{{$from}}</div>
     </div>
@@ -31,6 +32,15 @@
 
                 var fromdate = document.getElementById('fromDate').value;
                 var todate = document.getElementById('toDate').value;
+
+                if(new Date(fromdate) >= new Date(todate)){
+                    console.log('bad dates');
+                    document.getElementById('errordiv').innerText = "Error: from date larger than to date";
+                    return;
+                }else{
+                    document.getElementById('errordiv').innerText = "";
+
+                }
 
                 console.log( fromdate );
                 chart3.update({
