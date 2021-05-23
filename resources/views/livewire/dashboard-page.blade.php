@@ -1,8 +1,8 @@
 <div class="">
 
     <div class="bg-white mb-4 py-4 shadow-lg">
-        <div class="mx-4 border-solid border-gray-300 border flex flex-row justify-between  ">
-            <div class=" w-1/3 text-center  flex flex-col">
+        <div class="mx-4 border-solid border-gray-300 border flex flex-row justify-between shadow-sm  ">
+            <div class=" w-1/2 text-center  flex flex-col">
                 <div class="font-bold text-4xl text-rb-purple">
                     120
                 </div>
@@ -14,29 +14,19 @@
                 </div>
             </div>
 
-            <div class="w-1/3 text-center   flex flex-col  border-l-2 border-solid border-gray-400 ">
+            <div class="w-1/2 text-center   flex flex-col  border-l-2 border-solid border-gray-400 ">
                 <div class="font-bold text-4xl text-rb-purple">
                     120
                 </div>
                 <div class="font-bold">
-                    Quotes this month
+                    New clients this month
                 </div>
                 <div class="text-sm">
                     120% more than the last month
                 </div>
             </div>
 
-            <div class="w-1/3 text-center flex flex-col border-l-2 border-solid border-gray-400  ">
-                <div class="font-bold text-4xl text-rb-purple ">
-                    120
-                </div>
-                <div class="font-bold">
-                    Quotes this month
-                </div>
-                <div class="text-sm">
-                    120% more than the last month
-                </div>
-            </div>
+
 
         </div>
     </div>
