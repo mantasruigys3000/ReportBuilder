@@ -4,13 +4,13 @@
         <div class="mx-4 border-solid border-gray-300 border flex flex-row justify-between shadow-sm  ">
             <div class=" w-1/2 text-center  flex flex-col">
                 <div class="font-bold text-4xl text-rb-purple">
-                    120
+                    {{$quotesThisMonth}}
                 </div>
                 <div class="font-bold">
                     Quotes this month
                 </div>
                 <div class="text-sm">
-                    120% more than the last month
+                    {{$quotesDifference}}% difference to the last month ({{$quotesLastMonth}})
                 </div>
             </div>
 
@@ -31,9 +31,9 @@
         </div>
     </div>
 
-    <div class="flex flex-row ">
-        <button wire:click="$set('tab','last month')" class=" font-bold px-3  {{$tab == "last month"? 'bg-white' : 'bg-gray-300' }}">Last Month</button>
-        <button wire:click="$set('tab','all time')" class="bg-white font-bold px-3  {{$tab == "all time"? 'bg-white' : 'bg-gray-300' }}" >All Time</button>
+    <div class="flex flex-row justify-center">
+        <button type="button" wire:click="$set('tab','last month')" class="text-xl rounded-t-md font-bold px-3  {{$tab == "last month"? 'bg-white' : 'bg-gray-300' }}">Last Month</button>
+        <button type="button" wire:click="$set('tab','all time')" class="text-xl rounded-t-md  bg-white font-bold px-3  {{$tab == "all time"? 'bg-white' : 'bg-gray-300' }}" >All Time</button>
     </div>
 
     <div class="shadow-lg" wire:key="{{$tab}}">

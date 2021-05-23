@@ -43,9 +43,9 @@
                     <img src="{{asset('images/logo.png')}}" alt="">
                 </div>
 
-                <div class="">
-                    <p>Hello {{auth()->user()->name}}</p>
-                    <a href="/logoutuser">logout</a>
+                <div class="flex flex-row items-center ">
+                    <p class="mx-2 font-bold">Hello {{auth()->user()->name}}</p>
+                    <a class="px-2 py-1 font-bold bg-red-500 text-white rounded-md" href="/logoutuser">logout</a>
                 </div>
             </div>
 
