@@ -6,7 +6,7 @@
             <script>
                 const chart3 = new Chartisan({
                     el: '#chart3',
-                    url: "@chart('quote_type_age_count')" + "?q={{"last month"}}",
+                    url: "@chart('quote_type_age_count')",
                     hooks: new ChartisanHooks()
                 });
             </script>
@@ -17,7 +17,7 @@
             <script>
                 const chart2 = new Chartisan({
                     el: '#chart2',
-                    url: "@chart('quote_type_age_count')" + "?q={{"last month"}}",
+                    url: "@chart('quote_type_age_count')",
                     hooks: new ChartisanHooks()
                         .tooltip(true)
                         .legend()

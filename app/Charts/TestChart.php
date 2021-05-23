@@ -29,7 +29,7 @@ class TestChart extends BaseChart
 
             });
         }else if ($request->q == "last month"){
-            $date = Carbon::now()->subMonth();
+            $date = Carbon::createFromFormat('Y-m-d' , '2021-03-26');
             $quotes = Quote::select('benefit','created_at')->where('created_at', '>=', $date)->cursor();
 
             $quotes = $quotes->groupBy(function($val){

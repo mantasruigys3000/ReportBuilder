@@ -11,6 +11,7 @@ class DashboardPage extends Component
     public $quotesBySmokers = "all time";
 
 
+
     public function mount(){
     }
     public function render()
