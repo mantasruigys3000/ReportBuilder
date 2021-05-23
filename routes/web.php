@@ -42,6 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 
     Route::prefix('viewchart')->group(function(){
         Route::get('/typecount',\App\Http\Livewire\ViewTypeCount::class)->name('typecount');
+        Route::get('/ageovertime',\App\Http\Livewire\ViewAgeOverTimeChart::class)->name('ageovertime');
     });
 
 });

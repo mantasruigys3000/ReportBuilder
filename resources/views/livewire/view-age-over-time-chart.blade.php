@@ -22,10 +22,19 @@
             console.log('running');
 
 
-            let chart3 = new Chartisan({
+            const chart3 = new Chartisan({
                 el: '#chart3',
-                url: "@chart('quote_type_age_count')",
-                hooks: new ChartisanHooks().legend().tooltip()
+                url: "@chart('age_over_time_chart')?from=2021-03-26",
+                hooks: new ChartisanHooks()
+                    .datasets([{type:'line',fill: true},])
+                    .colors([
+                        '#ff0000',
+                        '#00ff00',
+                        '#0000ff',
+                        '#000000',
+                        '#FF00FF',
+                        '#00FFFF',
+                    ]).tooltip(undefined).legend()
             });
 
             function update(){
@@ -44,7 +53,7 @@
 
                 console.log( fromdate );
                 chart3.update({
-                    url: "@chart('quote_type_age_count')?from=" + fromdate + '&to='+todate,
+                    url: "@chart('age_over_time_chart')?from=" + fromdate + '&to='+todate,
                 });
             }
 

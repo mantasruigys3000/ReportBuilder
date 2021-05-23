@@ -51,7 +51,6 @@ class AgeOverTimeChart extends BaseChart
 
         //$quotes = Quote::hydrate($quotes);
 
-
         if($from->diffInYears($to) >= 1){
             $quotes = array_group_by($quotes,function($q){
 
