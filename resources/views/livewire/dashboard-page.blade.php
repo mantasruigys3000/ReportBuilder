@@ -16,13 +16,13 @@
 
             <div class="w-1/2 text-center   flex flex-col  border-l-2 border-solid border-gray-400 ">
                 <div class="font-bold text-4xl text-rb-purple">
-                    120
+                    {{$clientsThisMonth}}
                 </div>
                 <div class="font-bold">
                     New clients this month
                 </div>
                 <div class="text-sm">
-                    120% more than the last month
+                    {{$clientsDifference}}% difference than the last month ({{$clientsLastMonth}})
                 </div>
             </div>
 

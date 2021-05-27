@@ -32,14 +32,10 @@
                     <div class="flex flex-row py-2">
                         <div class="flex flex-col w-1/3 overflow-scroll border-solid border-gray-300 border-r-2  ">
                             @foreach($clients as $key => $client)
-                                <button class="flex flex-row" wire:click="setCurrentClient({{$client->id}})">
+                                <button class="flex flex-row justify-center text-center font-bold shadow-md {{(isset($currentClient) && $currentClient->id == $client->id)? 'bg-rb-blue': ''}}" wire:click="setCurrentClient({{$client->id}})">
                                     <div class="pr-2">
                                         Client #{{$client->id}}
                                     </div>
-                                    <div class="pr-2">
-                                        {{$client->title}}
-                                    </div>
-
                                 </button>
                             @endforeach
                         </div>
