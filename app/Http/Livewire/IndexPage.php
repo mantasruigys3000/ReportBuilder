@@ -34,6 +34,7 @@ class IndexPage extends Component
     }
 
 
+
     public function render()
     {
         $order = 'ASC';

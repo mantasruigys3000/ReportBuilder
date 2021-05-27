@@ -23,7 +23,7 @@ class SmokerChart extends BaseChart
     {
         //dd(Quote::whereHas('client_1')->with('client_1')->first());
 
-        $date = Carbon::now()->subMonth();
+        $date = Carbon::createFromFormat('Y-m-d','2021-03-26');
         DB::enableQueryLog();
 
         if($request->q == "all time"){
