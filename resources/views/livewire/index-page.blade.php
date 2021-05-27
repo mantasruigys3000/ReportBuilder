@@ -12,10 +12,13 @@
             @case('clients')
                 <div>
                     <h1 class="text-center">Clients</h1>
-                    <div class="flex flex-row justify-between">
+                    <div class="flex flex-row justify-center">
                         <div class="font-bold">
-                            <label for="smoker">Smoker?</label>
-                            <input id="smoker" type="checkbox">
+                            <select wire:model="smoker" name="smoker" id="smoker">
+                                <option value="all">All</option>
+                                <option value="smokers">Smokers</option>
+                                <option value="non-smokers">Non-smokers</option>
+                            </select>
                         </div>
                         
                         <div>

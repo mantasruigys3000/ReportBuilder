@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Client;
 use Livewire\Component;
 use Livewire\WithPagination;
+use phpDocumentor\Reflection\Types\Collection;
 
 class IndexPage extends Component
 {
@@ -14,6 +15,7 @@ class IndexPage extends Component
 
     public $orderby = 'latest';
 
+    public $smoker = 'all';
 
 
 
@@ -57,11 +59,25 @@ class IndexPage extends Component
             $l='DESC';
         }
 
+        //$smokerbool =
+
+        $clients = collect();
+
+        if($this->smoker === 'all'){
+            $clients = Client::query();
+        }
+        else if($this->smoker ==='smokers'){
+            $clients = Client::where('smoker',true);
+        }
+        else if ($this->smoker ==='non-smokers'){
+            $clients = Client::where('smoker',false);
+        }
+
         return view('livewire.index-page',[
 
 
 
-            'clients' => Client::where('smoker',true)->orderBy($property,$order)->paginate(30),
+            'clients' => $clients->orderBy($property,$order)->paginate(30),
         ]);
     }
 }
