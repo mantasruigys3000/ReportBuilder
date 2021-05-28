@@ -170,6 +170,7 @@
 
                     </div>
                     <div class="w-1/2">
+                        <p>Type of protection quoted for by each age group</p>
                         <div id="chart33" class="h-80"></div>
                         <script>
                             const chart33 = new Chartisan({

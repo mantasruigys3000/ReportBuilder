@@ -14,7 +14,7 @@
     </div>
     <div class="w-full border-l-2 border-solid border-gray-300 ">
         <div class="flex flex-col">
-            <h1 class="font-bold text-center">Types of coverage quoted for by each age group</h1>
+            <h1 class="font-bold text-center">Amount of quotes by each age group</h1>
             <div id="chart3" class="h-80"></div>
         </div>
         <script>
