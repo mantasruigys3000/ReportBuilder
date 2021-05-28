@@ -97,8 +97,8 @@
 
                     </div>
                     <div class="w-1/2">
-                        <div id="chart3" class="h-80"></div>
                         <p>Type of protection quoted for by each age group</p>
+                        <div id="chart3" class="h-80"></div>
                         <script>
                             const chart3 = new Chartisan({
                                 el: '#chart3',
